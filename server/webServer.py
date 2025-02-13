@@ -1,4 +1,4 @@
-#!/usr/bin/env/python
+#!/usr/bin/env python3
 # File name   : server.py
 # Production  : GWR
 # Website	 : www.adeept.com
