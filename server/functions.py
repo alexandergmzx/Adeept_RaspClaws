@@ -7,7 +7,10 @@ import time
 import RPi.GPIO as GPIO
 import threading
 from mpu6050 import mpu6050
-import Adafruit_PCA9685
+## Import the CircuitPython PCA9685 module.
+from adafruit_pca9685 import PCA9685
+from board import SCL, SDA
+import busio
 import os
 import json
 import Kalman_filter
@@ -18,8 +21,11 @@ scGear = RPIservo.ServoCtrl()
 
 kalman_filter_X =  Kalman_filter.Kalman_filter(0.01,0.1)
 
-pwm = Adafruit_PCA9685.PCA9685()
-pwm.set_pwm_freq(50)
+# Create the I2C bus interface.
+i2c = busio.I2C(SCL, SDA)
+# Create a simple PCA9685 class instance.
+pwm = PCA9685(i2c)
+pwm.frequency = 50
 
 MPU_connection = 1
 try:
